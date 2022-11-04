@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-import { applyMiddleware } from 'redux'
 import { Provider } from 'react-redux';
-import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { configureStore } from '@reduxjs/toolkit'
 
@@ -16,7 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: rootReducer,
-  // composeWithDevTools(applyMiddlew(sagaMiddleware))
+  middleware: [sagaMiddleware]
 })
 sagaMiddleware.run(rootSaga)
 

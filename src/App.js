@@ -2,13 +2,16 @@ import './App.css';
 import { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux'
-import { getPostList } from './modules/saga/getPostsSaga'
 
-function App({ loadingState, getPostListResp }) {
+import { initPostListResp, getPostList } from './modules/saga/getPostsSaga'
 
+function App({ getPostList, loadingState, initPostListResp, getPostListResp }) {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
+    const a = getPostList()
+
+    console.log(a, '?');
   }, [])
 
   return (
@@ -32,5 +35,6 @@ export default connect(({ apiGetPostListResp, loadingState }) => ({
   getPostListResp: apiGetPostListResp.getPostListResp
 }),
   {
-    getPostList
+    getPostList,
+    initPostListResp
   })(App)

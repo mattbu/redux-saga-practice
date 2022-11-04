@@ -4,7 +4,10 @@ import loadingState from './loadingState';
 
 import apiGetPostListResp, { apiGetPostsSaga } from './saga/getPostsSaga';
 
-const rootReducer = combineReducers({ loadingState, apiGetPostListResp })
+const rootReducer = combineReducers({
+  loadingState,
+  apiGetPostListResp
+})
 
 export function* rootSaga() {
   yield all([
