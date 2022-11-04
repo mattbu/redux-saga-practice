@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 
-function App() {
+import { connect } from 'react-redux'
+import { getPostList } from './modules/saga/getPostsSaga'
+
+function App({ loadingState, getPostListResp }) {
+
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div>
+        <ul>
+          {/* {posts.map(post => {
+            return <li key={post.id}>
+              <h4>{post.title}</h4>
+              <p>{post.body}</p>
+            </li>
+          })} */}
+        </ul>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default connect(({ apiGetPostListResp, loadingState }) => ({
+  loadingState: loadingState['posts/GET_POSTS'],
+  getPostListResp: apiGetPostListResp.getPostListResp
+}),
+  {
+    getPostList
+  })(App)
