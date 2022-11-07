@@ -9,9 +9,7 @@ export const axiosApiInstance = axios.create();
 // Request interceptor for API calls
 axiosApiInstance.interceptors.request.use(
   (config) => {
-    // if (!config.headers.Authorization) {
-    //   config.headers.Authorization = sessionStorage.getItem('TOKEN');
-    // }
+    console.log(config, '악시오스 컨피그');
     return config;
   },
   (error) => {

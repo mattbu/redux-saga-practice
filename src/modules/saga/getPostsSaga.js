@@ -20,7 +20,6 @@ export const getPostList = createAction(GET_POSTS);
 
 export const initPostListResp = createAction(INIT_POSTS_RESP);
 
-console.log(myApi.getPosts);
 const getPostListSaga = createRequestSaga(GET_POSTS, myApi.getPosts)
 
 export function* apiGetPostsSaga() {
