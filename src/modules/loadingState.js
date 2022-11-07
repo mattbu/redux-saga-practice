@@ -20,10 +20,13 @@ const initialState = {};
 
 const loadingState = handleActions(
   {
-    [START_LOADING]: (state, action) => ({
-      ...state,
-      [action.payload]: true
-    }),
+    [START_LOADING]: (state, action) => {
+      // console.log(state, action);
+      return {
+        ...state,
+        [action.payload]: true
+      }
+    },
     [FINISH_LOADING]: (state, action) => ({
       ...state,
       [action.payload]: false

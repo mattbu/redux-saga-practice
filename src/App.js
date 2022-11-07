@@ -9,11 +9,18 @@ function App({ getPostList, loadingState, initPostListResp, getPostListResp }) {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    const a = getPostList()
-
-    console.log(a, '?');
+    getPostList()
+    return () => {
+      initPostListResp();
+    }
   }, [])
 
+  useEffect(() => {
+    if (getPostListResp) {
+      console.log(getPostListResp);
+    }
+
+  }, [getPostListResp])
   return (
     <>
       <div>
@@ -30,10 +37,12 @@ function App({ getPostList, loadingState, initPostListResp, getPostListResp }) {
   )
 }
 
-export default connect(({ apiGetPostListResp, loadingState }) => ({
-  loadingState: loadingState['posts/GET_POSTS'],
-  getPostListResp: apiGetPostListResp.getPostListResp
-}),
+export default connect(({ apiGetPostListResp, loadingState }) => {
+  return {
+    loadingState: loadingState['posts/GET_POSTS'],
+    getPostListResp: apiGetPostListResp.getPostListResp,
+  }
+},
   {
     getPostList,
     initPostListResp
